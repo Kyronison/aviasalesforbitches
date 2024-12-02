@@ -1,0 +1,104 @@
+# Файлы и директории Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Логи
+*.log
+logs/
+log_*.txt
+
+# Файлы настроек и переменные окружения
+.env
+*.env
+config.py
+settings.py
+
+# Файлы виртуальных окружений
+venv/
+ENV/
+env/
+.venv/
+pip-selfcheck.json
+
+# Файлы IDE и редакторов
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Файлы тестирования
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Компилированные файлы C
+*.so
+
+# Файлы установки
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Файлы MyPy и других статических анализаторов
+.mypy_cache/
+.dmypy.json
+spyderproject
+spyproject
+
+# Файлы Jupyter Notebook
+.ipynb_checkpoints
+
+# Файлы булевской логики для анализа больших данных
+.DS_Store
+
+# Персональные файлы по клавиру
+*.swp
+.svn/
+*~
+
+# Файлы CSV, Excel и другие данные
+*.csv
+*.tsv
+*.xls
+*.xlsx
+
+# Файлы отчетов и временные файлы
+reports/
+*.tmp
+*.temp
+
+# Базы данных и миграции
+*.sqlite3
+*.db
+migrations/
+
+# Файлы операционных систем
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Другие ненужные файлы
+*.pot
+*.mo
+*.pid
+*.seed
