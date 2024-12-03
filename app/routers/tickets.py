@@ -1,35 +1,37 @@
 # app/routers/tickets.py
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
-from typing import List
+from typing import List, Optional
 from .. import crud, schemas
 from ..dependencies import get_db
-from ..services.aviasales_api import AviasalesAPI
 
 router = APIRouter(
     prefix="/tickets",
     tags=["tickets"]
 )
 
-@router.post("/fetch", response_model=List[schemas.Ticket])
-def fetch_tickets(
-    origin: str = Query(..., description="Код города отправления (например, 'MOW')"),
-    destination: str = Query(..., description="Код города назначения (например, 'LED')"),
-    departure_at: str = Query(..., description="Дата вылета в формате 'YYYY-MM-DD' (например, '2024-05-01')"),
+@router.get("/", response_model=List[schemas.Ticket])
+def get_tickets(
+    origin: str = Query(None, description="Код города отправления (например, 'MOW')"),
+    destination: str = Query(None, description="Код города назначения (например, 'LED')"),
+    departure_at: Optional[str] = Query(None, description="Дата вылета в формате 'YYYY-MM-DD'"),
+    min_price: Optional[float] = Query(None, description="Минимальная цена"),
+    max_price: Optional[float] = Query(None, description="Максимальная цена"),
+    limit: int = Query(100, description="Количество записей для возврата"),
     db: Session = Depends(get_db)
 ):
     """
-    Получить билеты от Aviasales API и сохранить их в базу данных.
+    Получить список билетов из базы данных по заданным критериям.
     """
     try:
-        aviasales_api = AviasalesAPI(db=db)
-        tickets = aviasales_api.get_prices_for_dates(
+        tickets = crud.get_tickets_filtered(
+            db=db,
             origin=origin,
             destination=destination,
             departure_at=departure_at,
-            currency='rub',
-            one_way=False,
-            direct=False,
+            min_price=min_price,
+            max_price=max_price,
+            limit=limit
         )
         return tickets
     except Exception as e:
