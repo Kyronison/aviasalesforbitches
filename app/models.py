@@ -19,7 +19,7 @@ class Ticket(Base):
     stops = Column(Integer, nullable=True)
 
 
-class Users(Base):
+class User(Base):
     __tablename__ = 'users'
 
     user_id = Column(Integer, primary_key=True, autoincrement=True)
@@ -29,7 +29,7 @@ class Users(Base):
     cards = relationship("Card", secondary="user_cards", back_populates="users")
 
 
-class Cards(Base):
+class Card(Base):
     __tablename__ = 'cards'
 
     card_id = Column(Integer, primary_key=True, autoincrement=True)
@@ -46,6 +46,8 @@ class Cards(Base):
         CheckConstraint("notification_freq in ('halfday', 'day', 'week', 'month')",
                         name="notification_freq_check"),
     )
+
+    users = relationship("User", secondary="user_cards", back_populates="cards")
 
 
 class UserCard(Base):  # Связующая/ассоциативная таблица
