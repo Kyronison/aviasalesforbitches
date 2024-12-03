@@ -1,8 +1,11 @@
-fastapi
+fastapi~=0.115.5
 uvicorn
-sqlalchemy
+sqlalchemy~=2.0.36
 psycopg2-binary
-pydantic
-requests
+pydantic~=2.10.2
+requests~=2.32.3
 python-telegram-bot
 alembic
+python-dotenv~=1.0.1
+python-dateutil~=2.9.0.post0
+APScheduler~=3.11.0
