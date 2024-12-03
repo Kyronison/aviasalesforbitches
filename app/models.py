@@ -1,5 +1,5 @@
 # app/models.py
-from sqlalchemy import Column, Integer, String, Numeric, Date, Text, ARRAY, Enum, CheckConstraint, ForeignKey
+from sqlalchemy import Column, Integer, String, Numeric, Date, Text, DATE, ForeignKey
 from sqlalchemy.orm import relationship, join
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -23,8 +23,9 @@ class User(Base):
     __tablename__ = 'users'
 
     user_id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(Text, nullable=False)
-    tg_nick = Column(String(32), nullable=False)
+    login = Column(Text, primary_key=True, nullable=False)
+    hashed_password = Column(String, nullable=False)
+    chat_id = Column(Integer, nullable=True)
 
     cards = relationship("Card", secondary="user_cards", back_populates="users")
 
@@ -35,17 +36,8 @@ class Card(Base):
     card_id = Column(Integer, primary_key=True, autoincrement=True)
     origin = Column(String(3), nullable=False)
     destination = Column(String(3), nullable=False)
+    flight_date = Column(Date, nullable=False)
     price_threshold = Column(Integer, default=-1)
-    notification_freq = Column(
-        Enum('halfday', 'day', 'week', 'month', name="notification_frequency_enum"),
-        nullable=False,
-        server_default='day'
-    )
-
-    __table_args__ = (
-        CheckConstraint("notification_freq in ('halfday', 'day', 'week', 'month')",
-                        name="notification_freq_check"),
-    )
 
     users = relationship("User", secondary="user_cards", back_populates="cards")
 
