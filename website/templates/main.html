@@ -9,14 +9,13 @@
 <body>
     <div class="root">
         <div class="header">
-            <a class="logo" href="/"><img src="static/images/logo.jpg"></a>
+            <a class="logo" href="/website/static"><img src="static/images/logo.jpg"></a>
+            <a class="LS" href="{{ url_for('main_pages.logout') }}">Выход</a>
         </div>
         <div class="main">
-            <p class="main-text">Подключите телеграмм</p>
+            <p class="main-text">Вот ваши карточки</p>
             <p></p>
-            <a href="{{ bot_link }}">Подключиться</a>
-            <p></p>
-            <a href="/">Я уже подключился</a>
+            <a href="{{ url_for('main_pages.add_card') }}">Подключиться</a>
         </div>
 </body>
 </html>
