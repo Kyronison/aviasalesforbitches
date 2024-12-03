@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LycTech</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="root-center">
+      <div class="header">
+            <a class="logo" href="/"><img src="static/images/logo.jpg"></a>
+            <a class="LS" href="{{ url_for('main_pages.signup') }}">Регистрация</a>
+        </div>
+      <div class="main-login">
+        <p class="login-text">Вход</p>
+        <form method="post" class="login-form">
+        <input class="LG" placeholder="Логин" name="username" id="username" required>
+        <input class="LG" placeholder="Пароль" type="password" name="password" id="password" required>
+        <input class="login-button" type="submit" value="Вход">
+      </form>
+      </div>
+      <div></div>
+    </div>
+</body>
+</html>
