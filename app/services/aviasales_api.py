@@ -24,7 +24,7 @@ class AviasalesAPI:
         currency: str = 'rub',
         one_way: bool = True,
         direct: bool = False,
-        limit: int = 30,
+        limit: int = 1000,
         page: int = 1,
         sorting: str = 'price',
         unique: bool = False
