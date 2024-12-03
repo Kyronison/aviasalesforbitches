@@ -1,0 +1,340 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100%;
+    padding-bottom: 48px;
+    font-family: IBM Plex Sans,Roboto,Helvetica Neue, Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+div {
+    display: block;
+}
+
+.header {
+    position: sticky;
+    z-index: 10;
+    top: 0px;
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    box-shadow: rgb(0 0 0 / 10%) 0px 20px 40px;
+    border-bottom: 1px solid rgb(235, 237, 240);
+    height: 5rem;
+    padding: 0px 9vw;
+    background-color: rgb(255, 255, 255);
+    user-select: none;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.main {
+    border-radius: 5px;
+    flex-shrink: 0;
+    margin-top: 7rem;
+    max-width: 70rem;
+    height: auto;
+    width: 80%;
+    box-shadow: rgb(0 0 0 / 20%) 0px 20px 40px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: flex-start;
+    flex: 0 auto;
+    padding-bottom: 2rem;
+}
+
+.left-side {
+    height: 100%;
+    width: 60%;
+    flex-direction: column;
+    margin-top: 81px;
+    margin-left: 98px;
+    margin-bottom: 66px;
+}
+
+.right-side {
+    margin-top: 80px;
+    height: 100%;
+    width: 40%;
+    flex-direction: column;
+    margin-right: 98px;
+}
+
+.circle-big {
+    border-radius: 15rem;
+    background-color: #6372FF;
+    box-shadow: rgb(0 0 0 / 40%) 0px 20px 40px;
+    width: 15vw;
+    height: 15vw;
+    margin-left: 5rem;
+}
+
+.circle-min {
+    border-radius: 10rem;
+    background-color: #6372FF;
+    box-shadow: rgb(0 0 0 / 40%) 0px 20px 40px;
+    width: 8vw;
+    height: 8vw;
+    margin-left: 15rem;
+    margin-top: 3rem;
+}
+
+.under-main {
+    border-radius: 5px;
+    height: 6px;
+    background-color: rgb(36 36 36);
+    max-width: 70rem;
+    width: 80vw;
+    margin-top: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+}
+
+.main-text {
+    font-size: 35px;
+    color: #363636;
+    max-width: 35rem;
+    width: 50vw;
+    font-weight: bold;
+    line-height: 64px;
+}
+
+.not-main-text {
+    font-size: 22px;
+    color: #363636;
+    max-width: 30rem;
+    width: 45vw;
+    margin-top: 40px;
+    line-height: 40px;
+    letter-spacing: 0.02em;
+}
+
+button {
+    border-radius: 5px;
+    background: #6372FF;
+    height: 6rem;
+    width: 17rem;
+    color: white;
+    font-size: 22px;
+    vertical-align: middle;
+    font-weight: medium;
+    border-style: none;
+    margin-top: 3rem;
+}
+
+button:hover {
+    border-radius: 5px;
+    background: #7E8BFD;
+    border-radius: 2px;
+    box-shadow: rgb(0 0 0 / 25%) 0px 10px 20px;
+    height: 6rem;
+    width: 17rem;
+    color: white;
+    font-size: 22px;
+    vertical-align: middle;
+    font-weight: medium;
+    border-style: none;
+    margin-top: 3rem;
+}
+
+.LS {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 0px 2rem;
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    transition: color 0.1s ease 0s;
+    text-decoration: none;
+    position: relative;
+    cursor: pointer;
+    color: #363636;
+}
+
+.LS:hover {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 0px 2rem;
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    transition: color 0.1s ease 0s;
+    text-decoration: none;
+    position: relative;
+    cursor: pointer;
+    color: #7E8BFD;
+}
+
+.logo {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 0 16px;
+    margin-right: auto;
+    font-size: 24px;
+    font-weight: 500;
+    color: rgb(69, 79, 91);
+    text-decoration: none;
+}
+
+.second-header {
+    z-index: 10;
+    top: 0px;
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    height: 7rem;
+    padding: 0px 11vw;
+    user-select: none;
+}
+
+.main-login {
+    border-radius: 5px;
+    max-width: 30rem;
+    height: auto;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 67px;
+    box-shadow: rgb(0 0 0 / 20%) 0px 20px 40px;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
+
+.login-text {
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.login-form {
+    transition: filter 0.1s ease 0s;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.LG {
+    margin-top: 2rem;
+    max-width: 25rem;
+    height: 5rem;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 20px;
+    padding-left: 2rem;
+    border: 2px solid black;
+}
+
+.login-button {
+    background: #6372FF;
+    border-radius: 5px;
+    height: 6rem;
+    width: 17rem;
+    color: white;
+    font-size: 22px;
+    vertical-align: middle;
+    font-weight: medium;
+    border-style: none;
+    margin-top: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login-button:hover {
+    background: #7E8BFD;
+    border-radius: 2px;
+    box-shadow: rgb(0 0 0 / 25%) 0px 10px 20px;
+    height: 6rem;
+    width: 17rem;
+    color: white;
+    font-size: 22px;
+    vertical-align: middle;
+    font-weight: medium;
+    border-style: none;
+    margin-top: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.main-register {
+    border-radius: 5px;
+    max-width: 120rem;
+    max-height: 40rem;
+    width: 80vw;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 67px;
+    box-shadow: rgb(0 0 0 / 20%) 0px 20px 40px;
+    padding-top: 41px;
+}
+
+.practicum {
+    flex-shrink: 0;
+    margin-top: 44px;
+    max-width: 50rem;
+
+    height: auto;
+    width: 80vw;
+    box-shadow: rgb(0 0 0 / 20%) 0px 20px 40px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+    text-align: center;
+    color: #363636;
+}
+
+.center-text {
+    font-size: 30px;
+    color: #363636;
+    font-weight: bold;
+    line-height: 64px;
+}
+
+.contacts {
+    flex-shrink: 0;
+    margin-top: 3rem;
+    max-width: 50rem;
+    max-height: 30rem;
+    height: auto;
+    width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 22px;
+    height: 5rem;
+    align-items: center;
+}
+
+.main-center-text {
+    margin-top: 2rem;
+    font-size: 20px;
+    line-height: 32px;
+    font-weight: normal;
+    max-width: 40rem;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+}
+
+.root-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}

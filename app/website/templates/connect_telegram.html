@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LycTech</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+</head>
+<body>
+    <div class="root">
+        <div class="header">
+            <a class="logo" href="/"><img src="static/images/logo.jpg"></a>
+        </div>
+        <div class="main">
+            <p class="main-text">Подключите телеграмм</p>
+            <p></p>
+            <a href="{{ bot_link }}">Подключиться</a>
+            <p></p>
+            <a href="/">Я уже подключился</a>
+        </div>
+</body>
+</html>
