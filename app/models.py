@@ -23,9 +23,9 @@ class User(Base):
     __tablename__ = 'users'
 
     user_id = Column(Integer, primary_key=True, autoincrement=True)
-    login = Column(Text, primary_key=True, nullable=False)
+    login = Column(Text, unique=True, nullable=False)
     hashed_password = Column(String, nullable=False)
-    chat_id = Column(Integer, nullable=True)
+    chat_id = Column(Integer, nullable=True, default=None)
 
     cards = relationship("Card", secondary="user_cards", back_populates="users")
 
