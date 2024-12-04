@@ -1,20 +1,15 @@
-from flask import Flask, session, redirect, url_for, render_template
-from app.website import main
-from app.website import create_app
+from flask import Flask
+from app.website.blueprints.auth import auth_bp
+from app.website.blueprints.main import main_bp
+from app.website.blueprints.cards import cards_bp
 
-app = create_app()
+def create_app():
+    app = Flask(__name__)
+    app.config.update(
+        SECRET_KEY='pGy5lNdVGMf6pGy5lNdVGMf6'
+    )
+    app.register_blueprint(auth_bp, url_prefix="/auth")
+    app.register_blueprint(main_bp)
+    app.register_blueprint(cards_bp, url_prefix="/cards")
 
-# Регистрируем маршруты из другого модуля
-app.register_blueprint(main.mn)
-
-
-@app.route('/')  # лавная страница
-def index():
-    if "login" in session:
-        return render_template('main.html', username=session['login'])
-    else:
-        return redirect(url_for('main_pages.login'))
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
+    return app
