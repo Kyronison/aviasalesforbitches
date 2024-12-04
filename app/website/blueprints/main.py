@@ -8,7 +8,7 @@ def logged():
     if not ("login" in session):
         return redirect(url_for('auth.login'))
     else:
-        return redirect(url_for('index'))
+        return redirect(url_for('main.index'))
 
 
 @main_bp.route('/telegram')
