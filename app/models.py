@@ -37,7 +37,7 @@ class Card(Base):
     origin = Column(String(3), nullable=False)
     destination = Column(String(3), nullable=False)
     flight_date = Column(Date, nullable=False)
-    price_threshold = Column(Integer, default=-1)
+    price_threshold = Column(Integer, default=None)
 
     users = relationship("User", secondary="user_cards", back_populates="cards")
 
