@@ -2,8 +2,9 @@ from flask import Blueprint, render_template, session, flash, request, redirect,
 
 from flask import Blueprint, redirect, session
 from app.database import SessionLocal
+from app.crud.users import create_user
 from app.crud.users import authenticate_user
-
+from app import schemas
 mn = Blueprint("main_pages", __name__)
 db = SessionLocal()
 
@@ -64,7 +65,11 @@ def signup():  # получаем все, все, все данные :)
             return render_template('register.html')
 
         try:
-            user = authenticate_user(db, username, password)
+            new_user = schemas.UserCreate(
+                login=username,
+                password=password,
+            )
+            user = create_user(db, new_user)
             print("Регистрация успешна. Пользователь:", user)
 
             session.clear()
@@ -73,7 +78,7 @@ def signup():  # получаем все, все, все данные :)
             return redirect(url_for('main_pages.telegram'))
 
         except ValueError as e:
-            print(f"Ошибка аутентификации: {e}")
+            print(f"Ошибка регистрации: {e}")
             return render_template('register.html')
 
     return render_template('register.html')
