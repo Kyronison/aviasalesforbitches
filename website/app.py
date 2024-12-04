@@ -13,7 +13,7 @@ app.register_blueprint(main.mn)
 @app.route('/')  # лавная страница
 def index():
     if "login" in session:
-        return render_template('main.html')
+        return render_template('main.html', username=session['login'])
     else:
         return redirect(url_for('main_pages.login'))
 
