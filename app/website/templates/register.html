@@ -19,9 +19,10 @@
                 </div>
                 <div class="actions">
                     <a href="{{ url_for('main_pages.login') }}">Вход</a>
-                    <button type="submit">Регистрация</button>
+                    <button type="submit" id="submitButton">Регистрация</button>
                 </div>
             </form>
+            <script src="{{ url_for('static', filename='script.js') }}"></script>
         </div>
     </div>
 </body>
