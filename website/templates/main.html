@@ -14,12 +14,23 @@
 <body>
     <header>
         <div class="header-content">
-            <!-- Поле с текстом "Привет" -->
-            <div class="username">{{ username }}</div>
+            <a class="username" href="/logout">{{ username }}</a>
 
-            <!-- Кнопка, которая ведет на другую страницу -->
             <a href="/addcard" class="center-button">Добавить билет</a>
         </div>
     </header>
+    <div class="bubble-container">
+    <div class="bubble">
+        <div class="greeting">MSW - LDN</div>
+        <div class="divider"></div>
+        <div class="small-text">Пороговая стоимость</div>
+        <div class="large-text">3500 рублей</div>
+        <div class="small-text">Дата отправления</div>
+        <div class="large-text">10.03.2005</div>
+        <div class="divider"></div>
+        <button class="delete-btn">Удалить</button>
+    </div>
+</div>
+
 </body>
 </html>
