@@ -1,10 +1,8 @@
 from flask import Flask, session, redirect, url_for, render_template
-import main
+from app.website import main
+from app.website import create_app
 
-app = Flask(__name__)
-app.config.update(
-    SECRET_KEY='pGy5lNdVGMf6pGy5lNdVGMf6'
-)
+app = create_app()
 
 # Регистрируем маршруты из другого модуля
 app.register_blueprint(main.mn)

@@ -4,8 +4,10 @@ from datetime import datetime
 from typing import Optional
 from app.models import Ticket
 
+
 def get_ticket_by_link(db: Session, link: str):
     return db.query(models.Ticket).filter(models.Ticket.link == link).first()
+
 
 def create_ticket(db: Session, ticket: schemas.TicketCreate) -> models.Ticket:
     db_ticket = models.Ticket(
@@ -51,6 +53,7 @@ def get_tickets_filtered(
 
     tickets = query.limit(limit).all()
     return tickets
+
 
 def get_tickets(db: Session, skip: int = 0, limit: int = 10):
     return db.query(models.Ticket).offset(skip).limit(limit).all()

@@ -1,9 +1,10 @@
 from flask import Blueprint, render_template, session, flash, request, redirect, url_for
 
-from app.crud.users import authenticate_user
+from flask import Blueprint, redirect, session
 from app.database import SessionLocal
-# Создаём Blueprint для маршрутов
-mn = Blueprint('main_pages', __name__)
+from app.crud.users import authenticate_user
+
+mn = Blueprint("main_pages", __name__)
 db = SessionLocal()
 
 
