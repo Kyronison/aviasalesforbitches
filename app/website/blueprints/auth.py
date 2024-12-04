@@ -58,7 +58,7 @@ def signup():  # получаем все, все, все данные :)
             session.clear()
             session['login'] = username
 
-            return redirect(url_for('main.telegram'))
+            return redirect(url_for('auth.login'))
 
         except ValueError as e:
             print(f"Ошибка регистрации: {e}")
