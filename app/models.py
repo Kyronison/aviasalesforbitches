@@ -25,7 +25,7 @@ class User(Base):
     user_id = Column(Integer, primary_key=True, autoincrement=True)
     login = Column(Text, unique=True, nullable=False)
     hashed_password = Column(String, nullable=False)
-    chat_id = Column(Integer, nullable=True)
+    chat_id = Column(Integer, nullable=True, default=0)
 
     cards = relationship("Card", secondary="user_cards", back_populates="users")
 
