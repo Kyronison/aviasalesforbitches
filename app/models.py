@@ -23,7 +23,7 @@ class User(Base):
     __tablename__ = 'users'
 
     user_id = Column(Integer, primary_key=True, autoincrement=True)
-    login = Column(Text, primary_key=True, nullable=False)
+    login = Column(Text, unique=True, nullable=False)
     hashed_password = Column(String, nullable=False)
     chat_id = Column(Integer, nullable=True)
 
