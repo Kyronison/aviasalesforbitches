@@ -2,39 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>LycTech</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Карточка авиабилетов</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="root-center">
-      <div class="header">
-            <a class="logo" href="/website/static"><img src="static/images/logo.jpg"></a>
-            <a class="LS" href="{{ url_for('main_pages.logout') }}">Выход</a>
+    <div class="container">
+        <div class="login-box">
+            <h1>Добавить карточку авиабилета</h1>
+            <form method="post">
+                <div class="input-group">
+                    <select id="scity" name="scity">
+                        <option value="ms">Moscow</option>
+                        <option value="ny">New York</option>
+                        <option value="pr">Paris</option>
+                        <option value="sp">St. Petersburg</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <select id="fcity" name="fcity">
+                        <option value="ms">Moscow</option>
+                        <option value="ny">New York</option>
+                        <option value="pr">Paris</option>
+                        <option value="sp">St. Petersburg</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <input type="date" id="date" name="date"/>
+                </div>
+                <div class="input-group">
+                    <input name="sum" id="sum" placeholder="Sum for the ticket" required>
+                </div>
+                <div class="actions">
+                    <a href="{{ url_for('index') }}">Главная</a>
+                    <button type="submit">Добавить</button>
+                </div>
+            </form>
         </div>
-      <div class="main-login">
-        <p class="login-text">Регистрация</p>
-        <form method="post" class="login-form">
-            <select id="scity" name="scity">
-                <option value="ms">Moscow</option>
-                <option value="ny">New York</option>
-                <option value="pr">Paris</option>
-                <option value="sp">St. Petersburg</option>
-            </select>
-            <select id="fcity" name="fcity">
-                <option value="ms">Moscow</option>
-                <option value="ny">New York</option>
-                <option value="pr">Paris</option>
-                <option value="sp">St. Petersburg</option>
-            </select>
-            <p>
-                <label for="date">День отправления: </label>
-                <input type="date" id="date" name="date"/>
-            </p>
-            <input class="LG" placeholder="Необходимая сумма" name="sum" id="sum" required>
-            <input class="login-button" type="submit" value="Создать">
-          </form>
-      </div>
-      <div style="margin-top: 2rem;"></div>
     </div>
 </body>
 </html>

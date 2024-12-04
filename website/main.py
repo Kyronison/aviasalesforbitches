@@ -52,12 +52,15 @@ def signup():  # получаем все, все, все данные :)
             error = 'Username is required.'
         elif not password:
             error = 'Password is required.'
+        session.clear()
+        session['login'] = username
 
         if error is None:
             return redirect(url_for('main_pages.telegram'))
 
         flash(error)
     return render_template('register.html')
+
 
 @mn.route('/addcard', methods=('GET', 'POST'))
 def add_card():  # получаем все, все, все данные :)
