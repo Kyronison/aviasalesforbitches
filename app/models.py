@@ -1,6 +1,6 @@
 # app/models.py
 from sqlalchemy import Column, Integer, String, Numeric, Date, Text, DATE, ForeignKey
-from sqlalchemy.orm import relationship, join
+from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
@@ -34,16 +34,11 @@ class Card(Base):
     __tablename__ = 'cards'
 
     card_id = Column(Integer, primary_key=True, autoincrement=True)
+    user_id = Column(Integer, ForeignKey('users.user_id'), nullable=False)
     origin = Column(String(3), nullable=False)
     destination = Column(String(3), nullable=False)
     flight_date = Column(Date, nullable=False)
     price_threshold = Column(Integer, default=None)
 
-    users = relationship("User", secondary="user_cards", back_populates="cards")
+    user = relationship("User", back_populates="cards")
 
-
-class UserCard(Base):  # Связующая/ассоциативная таблица
-    __tablename__ = 'user_cards'
-
-    user_id = Column(Integer, ForeignKey('users.user_id'), primary_key=True)
-    card_id = Column(Integer, ForeignKey('cards.card_id'), primary_key=True)
