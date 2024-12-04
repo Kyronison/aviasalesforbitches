@@ -40,7 +40,7 @@ class UserCreate(UserBase):
     def validate_login(cls, value: str) -> str:
         if len(value) < 3:
             raise ValueError("Логин должен содержать минимум 3 символа")
-        if not re.fullmatch(r"[a-zA-Z]+", value):
+        if not re.fullmatch(r"[a-zA-Z0-9]+", value):
             raise ValueError("Логин может содержать только английские буквы и цифры")
         return value
 
