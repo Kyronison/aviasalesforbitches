@@ -2,24 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>LycTech</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="root-center">
-      <div class="header">
-            <a class="logo" href="/website/static"><img src="static/images/logo.jpg"></a>
-            <a class="LS" href="{{ url_for('main_pages.signup') }}">Регистрация</a>
+    <div class="container">
+        <div class="login-box">
+            <h1>Вход</h1>
+            <form method="post">
+                <div class="input-group">
+                    <input name="username" id="username" placeholder="Login" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" name="password" id="password" placeholder="Password" required>
+                </div>
+                <div class="actions">
+                    <a href="{{ url_for('main_pages.signup') }}">Регистрация</a>
+                    <button type="submit">Вход</button>
+                </div>
+            </form>
         </div>
-      <div class="main-login">
-        <p class="login-text">Вход</p>
-        <form method="post" class="login-form">
-        <input class="LG" placeholder="Логин" name="username" id="username" required>
-        <input class="LG" placeholder="Пароль" type="password" name="password" id="password" required>
-        <input class="login-button" type="submit" value="Вход">
-      </form>
-      </div>
-      <div></div>
     </div>
 </body>
 </html>
