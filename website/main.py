@@ -1,7 +1,10 @@
 from flask import Blueprint, render_template, session, flash, request, redirect, url_for
 
+from app.crud.users import authenticate_user
+from app.database import SessionLocal
 # Создаём Blueprint для маршрутов
 mn = Blueprint('main_pages', __name__)
+db = SessionLocal()
 
 
 @mn.route('/logged')
@@ -26,17 +29,24 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        error = None
-        if not username:
-            error = 'Username is required.'
-        elif not password:
-            error = 'Password is required.'
-        session.clear()
-        session['login'] = username
 
-        if error is None:
+        if not username:
+            return render_template('login.html')
+        elif not password:
+            return render_template('login.html')
+
+        try:
+            user = authenticate_user(db, username, password)
+            print("Аутентификация успешна. Пользователь:", user)
+
+            session.clear()
+            session['login'] = username
+
             return redirect(url_for('main_pages.logged'))
-        flash(error)
+
+        except ValueError as e:
+            print(f"Ошибка аутентификации: {e}")
+            return render_template('login.html')
 
     return render_template('login.html')
 
@@ -46,19 +56,25 @@ def signup():  # получаем все, все, все данные :)
     if request.method == 'POST':
         username = str(request.form['login'])
         password = str(request.form['password'])
-        error = None
 
         if not username:
-            error = 'Username is required.'
+            return render_template('register.html')
         elif not password:
-            error = 'Password is required.'
-        session.clear()
-        session['login'] = username
+            return render_template('register.html')
 
-        if error is None:
+        try:
+            user = authenticate_user(db, username, password)
+            print("Регистрация успешна. Пользователь:", user)
+
+            session.clear()
+            session['login'] = username
+
             return redirect(url_for('main_pages.telegram'))
 
-        flash(error)
+        except ValueError as e:
+            print(f"Ошибка аутентификации: {e}")
+            return render_template('register.html')
+
     return render_template('register.html')
 
 
