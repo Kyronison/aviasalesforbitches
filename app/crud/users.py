@@ -79,3 +79,20 @@ def authenticate_user(db: Session, login: str, password: str) -> models.User | N
         raise ValueError("Пользователя не существует.")
     except Exception as e:
         raise ValueError(f"Ошибка при аутентификации: {e}")
+
+
+def delete_user(db: Session, login: str) -> None:
+    """
+    Удаляет аккаунт пользоваателя и все его карточки по его логину
+
+    :param db: актуальная сессия
+    :param login: логин пользователя (строка)
+    :return: None
+    :raise Value error: если пользователь не найден
+    """
+    user = db.query(models.User).filter(models.User.login == login).first()
+    if not user:
+        return None
+        # raise ValueError("Пользователь не найден.")
+    db.delete(user)
+    db.commit()
