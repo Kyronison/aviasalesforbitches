@@ -34,3 +34,35 @@ def create_card(db: Session, card_data: CardCreate) -> models.Card:
     db.commit()
     db.refresh(new_card)
     return new_card
+
+
+def delete_card(db: Session, card_id: int) -> None:
+    """
+    Удаление карточки по id.
+
+    :param db: актуальная сессия
+    :param card_id: id карочки (int)
+    :return: None
+    :raise Value error: если карточка не найдена в базе данных
+    """
+    card = db.query(models.Card).filter(models.Card.card_id == card_id).first()
+    if not card:
+        raise ValueError("Карточка не найдена.")
+    db.delete(card)
+    db.commit()
+
+
+def get_cards_by_user_login(db: Session, user_login: str) -> list[models.Card]:
+    """
+    Получение всех карточек пользователя по его логину.
+
+    :param db: актуальнная сессия
+    :param user_login: уникальный логин пользователя (строка)
+    :return: список карточек
+    :raise Value error: если пользователь не найден
+    """
+    try:
+        user = db.query(models.User).filter(models.User.login == user_login).one()
+        return user.cards
+    except NoResultFound:
+        raise ValueError("Такого пользователя нет в системе")
