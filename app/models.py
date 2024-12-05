@@ -27,14 +27,15 @@ class User(Base):
     hashed_password = Column(String, nullable=False)
     chat_id = Column(Integer, nullable=True, default=None)
 
-    cards = relationship("Card", secondary="user_cards", back_populates="users")
+    cards = relationship("Card", back_populates="user", cascade="all, delete-orphan")
+
 
 
 class Card(Base):
     __tablename__ = 'cards'
 
     card_id = Column(Integer, primary_key=True, autoincrement=True)
-    user_id = Column(Integer, ForeignKey('users.user_id'), nullable=False)
+    user_id = Column(Integer, ForeignKey('users.user_id', ondelete='CASCADE'), nullable=False)
     origin = Column(String(3), nullable=False)
     destination = Column(String(3), nullable=False)
     flight_date = Column(Date, nullable=False)
