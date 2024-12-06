@@ -22,7 +22,7 @@ def create_user(db: Session, user: schemas.UserCreate) -> models.User:
     Добавление нового пользователя в базу.
     
     :param db: актуальная сессия
-    :param user: 
+    :param user: набор корректных данных пользователя
     :return: объект User
     :raises ValueError: если логин не уникален
     """""
@@ -78,7 +78,7 @@ def authenticate_user(db: Session, login: str, password: str) -> models.User | N
     except NoResultFound:
         raise ValueError("Пользователя не существует.")
     except Exception as e:
-        raise ValueError(f"Ошибка при аутентификации: {e}")
+        raise
 
 
 def delete_user(db: Session, login: str) -> None:
@@ -92,7 +92,6 @@ def delete_user(db: Session, login: str) -> None:
     """
     user = db.query(models.User).filter(models.User.login == login).first()
     if not user:
-        return None
-        # raise ValueError("Пользователь не найден.")
+        raise ValueError("Пользователь не найден.")
     db.delete(user)
     db.commit()
