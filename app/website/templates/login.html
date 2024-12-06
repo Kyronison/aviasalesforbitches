@@ -10,16 +10,23 @@
     <div class="container">
         <div class="login-box">
             <h1>Вход</h1>
-            <form method="post">
+            <form method="POST" id="loginForm">
+                {{ form.hidden_tag() }}
                 <div class="input-group">
-                    <input name="username" id="username" placeholder="Login" required>
+                    {{ form.username(placeholder="Логин") }}
+                    {% for error in form.username.errors %}
+                        <span class="error">{{ error }}</span>
+                    {% endfor %}
                 </div>
                 <div class="input-group">
-                    <input type="password" name="password" id="password" placeholder="Password" required>
+                    {{ form.password(placeholder="Пароль", type="password") }}
+                    {% for error in form.password.errors %}
+                        <span class="error">{{ error }}</span>
+                    {% endfor %}
                 </div>
                 <div class="actions">
                     <a href="{{ url_for('auth.signup') }}">Регистрация</a>
-                    <button type="submit">Вход</button>
+                    {{ form.submit }}
                 </div>
             </form>
         </div>
