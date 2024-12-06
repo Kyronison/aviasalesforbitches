@@ -35,7 +35,7 @@ def test_create_user_success(mock_hash_password, mock_db_session):
 @patch('app.crud.users.security.hash_password')
 def test_create_user_failure(mock_hash_password, mock_db_session):
     """Тест неудачного создания пользователя из-за не уникального логина"""
-    new_user_data = schemas.UserCreate(login="testuser", password="password123")
+    new_user_data = schemas.UserCreate(login="nonuniqueuser", password="password123")
     with patch('app.crud.users.__is_login_unique', return_value=False):
         with pytest.raises(ValueError) as e:
             users.create_user(mock_db_session, new_user_data)
@@ -56,7 +56,7 @@ def test_add_chat_id_by_login_success(mock_db_session, login, chat_id):
 
 def test_add_chat_id_by_login_failure(mock_db_session):
     """Тест неудачного добавления chat_id из-за отсутствия пользователя в базе"""
-    login = "I_don't_exist"
+    login = "nonexistentuser"
     chat_id = -135
     mock_db_session.query().filter(models.User.login == login).first.return_value = None
 
