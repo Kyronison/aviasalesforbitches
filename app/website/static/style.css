@@ -72,6 +72,34 @@ body {
     margin-bottom: 15px;
 }
 
+.input-group input {
+    padding: 10px;
+    border: 2px solid #d8cef4;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+/* Стили для плейсхолдера */
+.input-group input::-webkit-input-placeholder { /* Chrome, Safari, Edge */
+    color: #aaa;
+}
+.input-group input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #aaa;
+}
+
+.input-group input::placeholder { /* Firefox, другие современные браузеры */
+    color: #aaa;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #9e83f5;
+    box-shadow: 0 0 0 2px rgba(153, 153, 153, 0.2);
+}
+
 .input-group input, select {
     width: 100%;
     padding: 10px;
@@ -129,6 +157,22 @@ body {
 .actions button:hover {
     background-color: #805be2;
 }
+
+.actions button[type="submit"], .actions input[type="submit"] { /* Добавлено для input type="submit"*/
+    padding: 10px 20px;
+    background-color: #9e83f5;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.actions button[type="submit"]:hover, .actions input[type="submit"]:hover {
+    background-color: #45a049; /* Темнее при наведении */
+}
+
 
 header {
     background-color: #d8cef4;
