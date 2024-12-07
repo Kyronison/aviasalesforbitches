@@ -13,25 +13,27 @@
             <form method="post">
                 <div class="input-group">
                     <select id="scity" name="scity">
-                        <option value="ms">Moscow</option>
-                        <option value="ny">New York</option>
-                        <option value="pr">Paris</option>
-                        <option value="sp">St. Petersburg</option>
+                        <option value="MOV">Moscow</option>
+                        <option value="NYC">New York</option>
+                        <option value="LON">London</option>
+                        <option value="CDG">Paris</option>
+                        <option value="LED">St. Petersburg</option>
                     </select>
                 </div>
                 <div class="input-group">
                     <select id="fcity" name="fcity">
-                        <option value="ms">Moscow</option>
-                        <option value="ny">New York</option>
-                        <option value="pr">Paris</option>
-                        <option value="sp">St. Petersburg</option>
+                        <option value="MOV">Moscow</option>
+                        <option value="NYC">New York</option>
+                        <option value="LON">London</option>
+                        <option value="CDG">Paris</option>
+                        <option value="LED">St. Petersburg</option>
                     </select>
                 </div>
                 <div class="input-group">
                     <input type="date" id="date" name="date"/>
                 </div>
                 <div class="input-group">
-                    <input name="sum" id="sum" placeholder="Sum for the ticket" required>
+                    <input name="sum" id="sum" placeholder="Сумма билета или пустое поле, если берем среднее">
                 </div>
                 <div class="actions">
                     <a href="{{ url_for('main.index') }}">Главная</a>

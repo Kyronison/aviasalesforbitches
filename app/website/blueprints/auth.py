@@ -33,16 +33,16 @@ def login():
         username = form.username.data
         password = form.password.data
         session['login'] = username
-        return redirect(url_for('main.logged'))
-        # try:
-        #     user = authenticate_user(db, username, password)
-        #     print("Аутентификация успешна. Пользователь:", user)
-        #     session.clear()
-        #     session['login'] = username
-        #     return redirect(url_for('main_pages.logged'))
-        # except ValueError as e:
-        #     print(f"Ошибка аутентификации: {e}")
-        #     flash(f"Ошибка аутентификации: {e}", 'error')
+        # return redirect(url_for('main.logged'))
+        try:
+            user = authenticate_user(db, username, password)
+            print("Аутентификация успешна. Пользователь:", user)
+            session.clear()
+            session['login'] = username
+            return redirect(url_for('main.logged'))
+        except ValueError as e:
+            print(f"Ошибка аутентификации: {e}")
+            flash(f"Ошибка аутентификации: {e}", 'error')
     return render_template('login.html', form=form)
 
 
