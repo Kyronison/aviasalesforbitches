@@ -22,7 +22,7 @@ def add_card():  # получаем все, все, все данные :)
             error = 'Money city is required.'
 
         if error is None:
-            return redirect(url_for('index'))
+            return redirect(url_for('main.index'))
 
         flash(error)
     return render_template('add_card.html')
