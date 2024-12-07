@@ -10,6 +10,7 @@ from datetime import date, timedelta
 @pytest.fixture
 def valid_card_data():
     return CardCreate(
+        card_id=1,
         user_login="testuser",
         origin=CityCode(code="MOV"),
         destination=CityCode(code="LED"),
@@ -102,3 +103,22 @@ def test_get_cards_by_user_login_no_cards(mock_db_session):
     retrieved_cards = cards.get_cards_by_user_login(mock_db_session, "testuser")
 
     assert len(retrieved_cards) == 0
+
+
+def test_get_card_by_id_success(mock_db_session, valid_card_data):
+    """Тест успешного получения карточки по ID"""
+    mock_card = models.Card(card_id=1)
+    mock_db_session.query().filter(models.Card.card_id == 1).first.return_value = mock_card
+
+    retrieved_card = cards.get_card_by_id(mock_db_session, mock_card.card_id)
+
+    assert retrieved_card == mock_card
+
+
+def test_get_card_by_id_not_found(mock_db_session):
+    """Тест неудачного получения карточки по ID (карточка не найдена)"""
+    mock_db_session.query().filter(models.Card.card_id == 1).first.return_value = None
+
+    with pytest.raises(ValueError) as e:
+        cards.get_card_by_id(mock_db_session, 9999)
+    assert str(e.value) == "Такой карточки нет в системе"
