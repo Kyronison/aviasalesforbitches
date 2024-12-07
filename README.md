@@ -27,3 +27,9 @@
    git clone https://github.com/username/AviasalesForBitches.git
    cd AviasalesForBitches
 
+## КТ-2
+
+- **Отчет**: https://docs.google.com/document/d/1pOvOj0ZBi8SQ_YB4gmEE0mFle7OaDBd1YLjHFojKku0/edit?usp=sharing
+- **Видео-отчет**: https://disk.yandex.ru/d/6mrqrV5Xj5G1eA
+
+
