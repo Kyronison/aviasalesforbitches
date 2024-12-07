@@ -14,9 +14,10 @@
 <body>
     <header>
         <div class="header-content">
-            <a class="username" href="{{ url_for('auth.logout') }}">{{ username }}</a>
+            <a class="username" href="/">{{ username }}</a>
+            <a class="username" href="{{ url_for('auth.logout') }}">Выход</a>
 
-            <a href="/addcard" class="center-button">Добавить билет</a>
+            <a href="{{ url_for('cards.add_card') }}" class="center-button">Добавить билет</a>
         </div>
     </header>
     <div class="bubble-container">
