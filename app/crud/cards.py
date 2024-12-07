@@ -66,3 +66,19 @@ def get_cards_by_user_login(db: Session, user_login: str) -> list[models.Card]:
         return user.cards
     except NoResultFound:
         raise ValueError("Такого пользователя нет в системе")
+
+
+def get_card_by_id(db: Session, card_id: int) -> models.Card:
+    """
+    Получение карточки по id.
+
+    :param db: актуальнная сессия
+    :param card_id: id карточки (число)
+    :return: объект карточки
+    :raise Value error: если карточка не найдена
+    """
+    card = db.query(models.Card).filter(models.Card.card_id == card_id).first()
+    if not card:
+        raise ValueError("Такой карточки нет в системе")
+    return card
+
