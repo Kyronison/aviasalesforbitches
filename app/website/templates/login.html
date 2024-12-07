@@ -31,5 +31,35 @@
             </form>
         </div>
     </div>
+<script>
+        const errorMessagesDiv = document.getElementById('error-messages');
+
+        {% for message in get_flashed_messages(with_categories=true) %}
+            let messageType = "{{ message[0] }}";
+            let messageText = "{{ message[1] }}";
+            let messageDiv = document.createElement('div');
+            messageDiv.className = "error-message " + messageType;
+            messageDiv.textContent = messageText;
+            errorMessagesDiv.appendChild(messageDiv);
+        {% endfor %}
+    </script>
+
+    <style>
+        .error-messages {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000; /*  Важный стиль для отображения над другими элементами */
+        }
+        .error-message {
+            padding: 10px 20px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            color: white;
+        }
+        .error { background-color: red; }
+        .success { background-color: green; }
+    </style>
 </body>
 </html>
