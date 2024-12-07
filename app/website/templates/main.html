@@ -14,7 +14,7 @@
 <body>
     <header>
         <div class="header-content">
-            <a class="username" href="/logout">{{ username }}</a>
+            <a class="username" href="{{ url_for('auth.logout') }}">{{ username }}</a>
 
             <a href="/addcard" class="center-button">Добавить билет</a>
         </div>

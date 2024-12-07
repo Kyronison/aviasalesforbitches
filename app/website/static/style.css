@@ -82,7 +82,6 @@ body {
     background-color: white;
 }
 
-/* Стили для плейсхолдера */
 .input-group input::-webkit-input-placeholder { /* Chrome, Safari, Edge */
     color: #aaa;
 }
@@ -158,7 +157,7 @@ body {
     background-color: #805be2;
 }
 
-.actions button[type="submit"], .actions input[type="submit"] { /* Добавлено для input type="submit"*/
+.actions button[type="submit"], .actions input[type="submit"] {
     padding: 10px 20px;
     background-color: #9e83f5;
     color: #fff;
@@ -170,7 +169,7 @@ body {
 }
 
 .actions button[type="submit"]:hover, .actions input[type="submit"]:hover {
-    background-color: #45a049; /* Темнее при наведении */
+    background-color: #45a049;
 }
 
 
