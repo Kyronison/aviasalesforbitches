@@ -10,7 +10,7 @@
     <div class="container">
         <div class="login-box">
             <h1>Регистрация</h1>
-            <form method="POST" id="registrationForm">  <!-- Добавлено id -->
+            <form method="POST" id="registrationForm">
                 {{ form.hidden_tag() }}
                 <div class="input-group">
                     {{ form.login(placeholder="Логин") }}
@@ -38,7 +38,7 @@
         </div>
     </div>
 
-    <div id="error-messages" class="error-messages"></div>  <!-- Элемент для сообщений об ошибках -->
+    <div id="error-messages" class="error-messages"></div>
 
     <script>
         const errorMessagesDiv = document.getElementById('error-messages');

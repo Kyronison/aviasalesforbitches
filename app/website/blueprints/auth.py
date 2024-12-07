@@ -32,6 +32,7 @@ def login():
     if form.validate_on_submit():
         username = form.username.data
         password = form.password.data
+        session['login'] = username
         try:
             user = authenticate_user(db, username, password)
             print("Аутентификация успешна. Пользователь:", user)
@@ -57,7 +58,7 @@ def signup():
             session.clear()
             session['login'] = username
             flash('Регистрация успешна!', 'success')
-            return redirect(url_for('auth.login'))
+            return redirect(url_for('main.telegram'))
         except ValueError as e:
             print(f"Ошибка регистрации: {e}")
 
