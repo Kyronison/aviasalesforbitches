@@ -18,7 +18,7 @@ Base.metadata.create_all(bind=engine)
 
 # Настройка планировщика
 scheduler = BackgroundScheduler()
-scheduler.add_job(collect_tickets, 'interval', minutes=20)
+scheduler.add_job(collect_tickets, 'interval', hours=1)
 scheduler.start()
 
 # Настройка FastAPI-приложения
