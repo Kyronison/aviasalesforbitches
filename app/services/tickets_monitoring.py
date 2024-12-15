@@ -7,6 +7,8 @@ from app.database import SessionLocal
 from app.crud.tickets import get_ticket_by_link, create_ticket
 import logging
 
+from app.telegram_bot.handlers import send_telegram_message
+
 logger = logging.getLogger(__name__)
 
 
@@ -15,7 +17,7 @@ class TicketMonitor:
         self.db = db
         self.api = AviasalesAPI(db=self.db)
 
-    def check_and_notify(self):
+    async def check_and_notify(self):
         logger.info("Запуск мониторинга билетов")
         cards = self.db.query(Card).all()
 
@@ -37,7 +39,8 @@ class TicketMonitor:
                             message = (f"🔥 Найден билет: {ticket.from_city} → {ticket.to_city}\n"
                                        f"Цена: {ticket.price} руб.\nДата вылета: {ticket.flight_date}\n"
                                        f"Ссылка: https://www.aviasales.ru/ + {ticket.link}")
-                            #send_telegram_message(card.user.chat_id, message)
+                            # send_telegram_message(card.user.chat_id, message)
+                            await send_telegram_message(card.user.chat_id, message)
 
                             logger.info(f"Билет отправлен пользователю {card.user.chat_id}")
             except Exception as e:
