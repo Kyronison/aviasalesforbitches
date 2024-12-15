@@ -6,6 +6,7 @@ from app.database import engine
 from app.models import Base
 from apscheduler.schedulers.background import BackgroundScheduler
 from app.services.ticket_service import collect_tickets  # Импорт фоновой задачи
+from app.services.tickets_monitoring import run_ticket_monitoring
 from app.website.application import create_app as create_website_app
 
 # Настройка логирования
@@ -18,7 +19,8 @@ Base.metadata.create_all(bind=engine)
 
 # Настройка планировщика
 scheduler = BackgroundScheduler()
-scheduler.add_job(collect_tickets, 'interval', hours=1)
+scheduler.add_job(collect_tickets, 'interval', minutes=20)
+scheduler.add_job(run_ticket_monitoring, 'interval', minutes=20)
 scheduler.start()
 
 # Настройка FastAPI-приложения
