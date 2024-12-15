@@ -7,6 +7,17 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <!-- Флеш-сообщения -->
+    <div id="error-messages" class="error-messages">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="error-message {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
     <div class="container">
         <div class="login-box">
             <h1>Вход</h1>
@@ -14,15 +25,9 @@
                 {{ form.hidden_tag() }}
                 <div class="input-group">
                     {{ form.username(placeholder="Логин") }}
-                    {% for error in form.username.errors %}
-                        <span class="error">{{ error }}</span>
-                    {% endfor %}
                 </div>
                 <div class="input-group">
                     {{ form.password(placeholder="Пароль", type="password") }}
-                    {% for error in form.password.errors %}
-                        <span class="error">{{ error }}</span>
-                    {% endfor %}
                 </div>
                 <div class="actions">
                     <a href="{{ url_for('auth.signup') }}">Регистрация</a>
@@ -31,35 +36,25 @@
             </form>
         </div>
     </div>
-<script>
-        const errorMessagesDiv = document.getElementById('error-messages');
-
-        {% for message in get_flashed_messages(with_categories=true) %}
-            let messageType = "{{ message[0] }}";
-            let messageText = "{{ message[1] }}";
-            let messageDiv = document.createElement('div');
-            messageDiv.className = "error-message " + messageType;
-            messageDiv.textContent = messageText;
-            errorMessagesDiv.appendChild(messageDiv);
-        {% endfor %}
-    </script>
 
     <style>
         .error-messages {
             position: fixed;
-            bottom: 20px;
+            top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 1000; /*  Важный стиль для отображения над другими элементами */
+            z-index: 1000;
         }
+
         .error-message {
             padding: 10px 20px;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
             border-radius: 5px;
             color: white;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            background-color: red;
         }
-        .error { background-color: red; }
-        .success { background-color: green; }
     </style>
 </body>
 </html>

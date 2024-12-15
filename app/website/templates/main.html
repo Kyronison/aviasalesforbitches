@@ -20,15 +20,21 @@
         </div>
     </header>
     <div class="bubble-container">
-     <div class="bubble">
-        <div class="greeting">MSW - LDN</div>
-        <div class="divider"></div>
-        <div class="small-text">Пороговая стоимость</div>
-        <div class="large-text">3500 рублей</div>
-        <div class="small-text">Дата отправления</div>
-        <div class="large-text">10.03.2005</div>
-        <div class="divider"></div>
-        <button class="delete-btn">Удалить</button>
+        {% for card in cards %}
+                <div class="bubble">
+                    <div class="greeting">{{ card.origin }} - {{ card.destination }}</div>
+                    <div class="divider"></div>
+                    <div class="small-text">Пороговая стоимость</div>
+                    <div class="large-text">{{ card.price_threshold if card.price_threshold else "Average" }} рублей</div>
+                    <div class="small-text">Дата отправления</div>
+                    <div class="large-text">{{ card.flight_date }}</div>
+                    <div class="divider"></div>
+                    <form action="{{ url_for('cards.delete_card') }}" method="POST">
+                        <input type="hidden" name="card_id" value="{{ card.id }}">
+                        <button type="submit" class="delete-btn">Удалить</button>
+                    </form>
+                </div>
+        {% endfor %}
     </div>
 </div>
 

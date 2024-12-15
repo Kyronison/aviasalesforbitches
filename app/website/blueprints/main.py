@@ -1,6 +1,11 @@
 from flask import Blueprint, render_template, session, redirect, url_for
 
+from app.crud.cards import get_cards_by_user_login
+from app.database import SessionLocal
+
 main_bp = Blueprint("main", __name__)
+db = SessionLocal()
+
 
 @main_bp.route('/logged')
 def logged():
@@ -22,7 +27,8 @@ def telegram():
 @main_bp.route('/')
 def index():
     if "login" in session:
-        return render_template('main.html', username=session['login'])
+        сards = get_cards_by_user_login(db, session['login'])
+        return render_template('main.html', username=session['login'], cards=cards)
     else:
         return redirect(url_for('auth.login'))
 
