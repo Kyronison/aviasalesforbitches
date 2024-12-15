@@ -36,7 +36,7 @@ class TicketMonitor:
                             # Отправляем уведомление пользователю
                             message = (f"🔥 Найден билет: {ticket.from_city} → {ticket.to_city}\n"
                                        f"Цена: {ticket.price} руб.\nДата вылета: {ticket.flight_date}\n"
-                                       f"Ссылка: {"https://www.aviasales.ru/"+ticket.link}")
+                                       f"Ссылка: https://www.aviasales.ru/ + {ticket.link}")
                             #send_telegram_message(card.user.chat_id, message)
 
                             logger.info(f"Билет отправлен пользователю {card.user.chat_id}")

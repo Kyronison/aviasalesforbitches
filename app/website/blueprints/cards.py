@@ -3,10 +3,8 @@ from datetime import date
 from flask import Blueprint, render_template, request, flash, redirect, url_for, session
 
 from app.crud import cards
-from app.crud.cards import create_card
 from app.database import SessionLocal
 from app.schemas import CardCreate, CityCode
-from app.utils.city_codes import city_codes
 
 cards_bp = Blueprint("cards", __name__)
 db = SessionLocal()
@@ -51,3 +49,10 @@ def add_card():  # получаем все, все, все данные :)
 
         flash(error)
     return render_template('add_card.html')
+
+
+@cards_bp.route('/delete_card', methods=['POST'])
+def delete_card():
+    card_id = request.form.get('card_id')
+    cards.delete_card(db, int(card_id))
+    return redirect(url_for('main.index'))
