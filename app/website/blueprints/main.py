@@ -28,7 +28,7 @@ def telegram():
 def index():
     if "login" in session:
         сards = get_cards_by_user_login(db, session['login'])
-        return render_template('main.html', username=session['login'], cards=cards)
+        return render_template('main.html', username=session['login'], cards=сards)
     else:
         return redirect(url_for('auth.login'))
 

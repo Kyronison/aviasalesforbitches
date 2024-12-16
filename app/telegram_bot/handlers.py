@@ -6,7 +6,7 @@ from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes
 from app.crud.users import add_chat_id_by_login
 from app.database import SessionLocal
-from app.telegram_bot.config import TOKEN
+from app.config import TELEGRAM_BOT_TOKEN
 
 db = SessionLocal()
 application = None
