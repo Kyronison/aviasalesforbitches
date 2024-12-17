@@ -24,8 +24,8 @@
                 <div class="bubble">
                     <div class="greeting">{{ card.origin }} - {{ card.destination }}</div>
                     <div class="divider"></div>
-                    <div class="small-text">Пороговая стоимость</div>
-                    <div class="large-text">{{ card.price_threshold if card.price_threshold else "Average" }} рублей</div>
+                    <div class="small-text">Пороговая стоимость в рублях</div>
+                    <div class="large-text">{{ card.price_threshold if card.price_threshold else "Средняя цена" }}</div>
                     <div class="small-text">Дата отправления</div>
                     <div class="large-text">{{ card.flight_date }}</div>
                     <div class="divider"></div>
