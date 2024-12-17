@@ -27,8 +27,9 @@ def telegram():
 @main_bp.route('/')
 def index():
     if "login" in session:
-        сards = get_cards_by_user_login(db, session['login'])
-        return render_template('main.html', username=session['login'], cards=сards)
+        # cards = get_cards_by_user_login(db, session['login'])
+        cards = []
+        return render_template('main.html', username=session['login'], cards=cards)
     else:
         return redirect(url_for('auth.login'))
 

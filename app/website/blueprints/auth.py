@@ -13,7 +13,7 @@ auth_bp = Blueprint("auth", __name__)
 class RegistrationForm(FlaskForm):
     login = StringField(validators=[DataRequired(), Length(min=3, max=20)])
     password = PasswordField(validators=[DataRequired(), Length(min=8)])
-    password_confirm = PasswordField(validators=[DataRequired(), EqualTo('password', message='Пароли должны совпадать')])
+    password_confirm = PasswordField(validators=[DataRequired(), Length(min=8)])
     submit = SubmitField('Регистрация')
 
 
@@ -41,8 +41,8 @@ def login():
             session['login'] = username
             return redirect(url_for('main.logged'))
         except ValueError as e:
-            print(f"Ошибка аутентификации: {e}")
-            flash(f"Ошибка аутентификации: {e}", 'error')
+            print(f"Ошибка аутентификации: {str(e)}")
+            flash(f"Ошибка аутентификации: {str(e)}", 'error')
     return render_template('login.html', form=form)
 
 
@@ -51,19 +51,26 @@ def signup():
     form = RegistrationForm()
     if form.validate_on_submit():
         username = form.login.data
-        password = form.password.data # Хэшируем пароль
+        password = form.password.data
+        password_confirm = form.password_confirm.data
+        print(password)
+        print(password_confirm)
+
+        if password != password_confirm:
+            flash("Пароли не совпадают. Попробуйте еще раз.", 'error')
+            return render_template('register.html', form=form)
+
         try:
             new_user = UserCreate(login=username, password=password)
             user = create_user(db, new_user)
             print("Регистрация успешна. Пользователь:", user)
             session.clear()
             session['login'] = username
-            flash('Регистрация успешна!', 'success')
             return redirect(url_for('main.telegram'))
         except ValueError as e:
-            print(f"Ошибка регистрации: {e}")
+            print(f"Ошибка регистрации: {str(e)}")
 
-            flash(f"Ошибка регистрации: {e}", 'error')
+            flash(f"Ошибка регистрации: {str(e)}", 'error')
     return render_template('register.html', form=form)
 
 
