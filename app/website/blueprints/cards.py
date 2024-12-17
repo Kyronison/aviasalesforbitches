@@ -1,3 +1,4 @@
+import datetime
 from datetime import date
 
 from flask import Blueprint, render_template, request, flash, redirect, url_for, session
@@ -15,11 +16,12 @@ def add_card():  # получаем все, все, все данные :)
     if request.method == 'POST':
         start_city = str(request.form['scity'])
         finish_city = str(request.form['fcity'])
-        time = str(request.form['date'])
+        time = request.form['date']
         if str(request.form['sum']) == "":
             money = None
         else:
-            money = request.form['sum']
+            money = int(request.form['sum'])
+
         error = None
 
         if not start_city:
@@ -27,7 +29,16 @@ def add_card():  # получаем все, все, все данные :)
         elif not finish_city:
             error = 'Finish city is required.'
         elif not time:
-            error = 'Time city is required.'
+            error = 'Date is required.'
+        elif money > 3000000 or money < 0:
+            error = 'We do not have tickets with such cost'
+        elif start_city == finish_city:
+            error = 'Cities can not be same'
+
+        if error is None:
+            time = datetime.datetime.strptime(time, '%Y-%m-%d').date()
+            if time < datetime.date.today():
+                error = 'You can not fly into the past'
 
         if error is None:
             try:

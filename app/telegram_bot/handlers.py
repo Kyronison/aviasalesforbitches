@@ -24,7 +24,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         user_login = context.args[0]  # Логин из ссылки
         # add_chat_id_by_login(db, user_login, chat_id)  # Сохраняем chat_id
         await update.message.reply_text(
-            f"Привет, {user_name}! Вы подключены как пользователь с логином {user_login}. Ваш chat_id сохранён."
+            f"Привет, {user_name}! Вы подключены как пользователь с логином {user_login}. Ваш chat_id сохранён. Вот ссылка для возврата на главную страницу нашего прекрасного сайтика: http://127.0.0.1:5000"
         )
     else:
         await update.message.reply_text(
