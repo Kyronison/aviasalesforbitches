@@ -4,12 +4,12 @@ from dotenv import load_dotenv
 from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes
 from app.config.database import SessionLocal
+from app.crud.users import add_chat_id_by_login
 
 db = SessionLocal()
 application = None
 load_dotenv()
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
-
 
 
 # Функция для приветствия при выполнении команды /start
@@ -19,7 +19,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if context.args:
         user_login = context.args[0]  # Логин из ссылки
-        # add_chat_id_by_login(db, user_login, chat_id)  # Сохраняем chat_id
+        add_chat_id_by_login(db, user_login, chat_id)  # Сохраняем chat_id
         await update.message.reply_text(
             f"Привет, {user_name}! Вы подключены как пользователь с логином {user_login}. Ваш chat_id сохранён. Вот ссылка для возврата на главную страницу нашего прекрасного сайтика: http://127.0.0.1:5000"
         )
