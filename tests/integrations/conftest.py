@@ -4,7 +4,6 @@ from app.website.application import create_app
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
 
-# Настройка для использования ин-мемори базы данных для тестов
 TEST_DATABASE_URI = 'sqlite:///:memory:'
 
 

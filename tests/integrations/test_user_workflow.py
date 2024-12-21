@@ -22,6 +22,7 @@ from bs4 import BeautifulSoup
 #             error_message = soup.select_one('div.error-message.error') #изменил на select_one
 #             assert error_message and "Неверный логин или пароль" in error_message.text
 
+
 def test_user_registration_errors(app):
     with app.test_client() as client:
         # Тест с несовпадающими паролями

@@ -1,6 +1,7 @@
 import pytest
 from unittest.mock import MagicMock
 
+
 @pytest.fixture
 def mock_db_session():
     mock_session = MagicMock()
