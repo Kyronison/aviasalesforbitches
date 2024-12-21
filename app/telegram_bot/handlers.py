@@ -1,12 +1,9 @@
-import asyncio
 import os
 
 from dotenv import load_dotenv
 from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes
-from app.crud.users import add_chat_id_by_login
-from app.database import SessionLocal
-from app.config import TELEGRAM_BOT_TOKEN
+from app.config.database import SessionLocal
 
 db = SessionLocal()
 application = None

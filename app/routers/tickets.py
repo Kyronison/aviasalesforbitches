@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 from typing import List, Optional
 from .. import crud, schemas
-from ..dependencies import get_db
+from app.config.database import get_db
 
 router = APIRouter(
     prefix="/tickets",

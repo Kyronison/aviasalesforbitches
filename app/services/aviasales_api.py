@@ -1,7 +1,7 @@
 # app/services/aviasales_api.py
 import requests
 from typing import Dict, Any, Optional, List
-from ..config import AVIASALES_API_KEY
+from app.config.config import AVIASALES_API_KEY
 from sqlalchemy.orm import Session
 from .. import crud, schemas
 from dateutil.parser import parse

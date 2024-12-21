@@ -1,10 +1,9 @@
-from datetime import datetime
 from sqlalchemy.orm import Session
 from app.services.aviasales_api import AviasalesAPI
 from app.telegram_bot.handlers import send_telegram_message
 from app.models import Card
-from app.database import SessionLocal
-from app.crud.tickets import get_ticket_by_link, create_ticket
+from app.config.database import SessionLocal
+from app.crud.tickets import get_ticket_by_link
 import logging
 
 logger = logging.getLogger(__name__)

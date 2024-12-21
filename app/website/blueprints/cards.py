@@ -1,10 +1,9 @@
 import datetime
-from datetime import date
 
 from flask import Blueprint, render_template, request, flash, redirect, url_for, session
 
 from app.crud import cards
-from app.database import SessionLocal
+from app.config.database import SessionLocal
 from app.schemas import CardCreate, CityCode
 
 cards_bp = Blueprint("cards", __name__)

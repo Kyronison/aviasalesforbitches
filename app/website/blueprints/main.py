@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template, session, redirect, url_for
 
-from app.crud.cards import get_cards_by_user_login
-from app.database import SessionLocal
+from app.config.database import SessionLocal
 
 main_bp = Blueprint("main", __name__)
 db = SessionLocal()

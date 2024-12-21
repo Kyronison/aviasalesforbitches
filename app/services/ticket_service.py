@@ -1,9 +1,8 @@
 # services/ticket_service.py
 import logging
-import time
 from datetime import datetime, timedelta
 from app.services.aviasales_api import AviasalesAPI
-from app.database import SessionLocal
+from app.config.database import SessionLocal
 logger = logging.getLogger(__name__)
 
 def collect_tickets():
