@@ -30,7 +30,7 @@
                     <div class="large-text">{{ card.flight_date }}</div>
                     <div class="divider"></div>
                     <form action="{{ url_for('cards.delete_card') }}" method="POST">
-                        <input type="hidden" name="card_id" value="{{ card.id }}">
+                        <input type="hidden" name="card_id" value="{{ card.card_id }}">
                         <button type="submit" class="delete-btn">Удалить</button>
                     </form>
                 </div>

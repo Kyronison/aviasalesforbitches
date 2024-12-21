@@ -24,20 +24,21 @@ def add_card():  # получаем все, все, все данные :)
         error = None
 
         if not start_city:
-            error = 'Start city is required.'
+            error = 'Город отправления должен быть обязательным.'
         elif not finish_city:
-            error = 'Finish city is required.'
+            error = 'Город прибытия должен быть обязательным.'
         elif not time:
-            error = 'Date is required.'
-        elif money > 3000000 or money < 0:
-            error = 'We do not have tickets with such cost'
+            error = 'Необходимо выбрать дату.'
+        elif money is not None:
+            if money > 3000000 or money < 0:
+                error = 'Таких дорогих билетов у нас нет :('
         elif start_city == finish_city:
-            error = 'Cities can not be same'
+            error = 'Город отправления и город назначения не могут быть одинаковыми.'
 
         if error is None:
             time = datetime.datetime.strptime(time, '%Y-%m-%d').date()
             if time < datetime.date.today():
-                error = 'You can not fly into the past'
+                error = 'Вы не можете улететь в прошлое.'
 
         if error is None:
             try:
@@ -52,8 +53,8 @@ def add_card():  # получаем все, все, все данные :)
                 new_card = cards.create_card(db, card_data)
                 return redirect(url_for('main.logged'))
             except ValueError as e:
-                print(f"Ошибка добавления карточки: {e}")
-                flash(f"Ошибка добавления карточки: {e}", 'error')
+                print(f"Ошибка добавления карточки: {str(e)}")
+                flash(f"Ошибка добавления карточки: {str(e)}", 'error')
 
             return redirect(url_for('main.index'))
 
