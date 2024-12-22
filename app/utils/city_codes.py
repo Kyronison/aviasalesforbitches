@@ -1,7 +1,7 @@
 city_codes = {
     "New York": "NYC",
     "London": "LON",
-    "Moscow": "MOV",
+    "Moscow": "MOW",
     "Paris": "CDG",
     "Saint Petersburg": "LED"
 
