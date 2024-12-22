@@ -14,9 +14,8 @@
 <body>
     <header>
         <div class="header-content">
-            <a class="username" href="{{ url_for('auth.logout') }}">Выйти из профиля {{ username }}</a>
-
-            <a href="{{ url_for('cards.add_card') }}" class="center-button">Добавить билет</a>
+            <div class="exit">{{ session['login'] }}</div>
+            <a class="username" href="{{ url_for('auth.logout') }}">Выйти</a>
         </div>
     </header>
     <div class="bubble-container">
@@ -35,6 +34,9 @@
                     </form>
                 </div>
         {% endfor %}
+        <div class="bubble-button">
+            <a href="{{ url_for('cards.add_card') }}" class="center-button">Добавить билет</a>
+        </div>
     </div>
 </div>
 

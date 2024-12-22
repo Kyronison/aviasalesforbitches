@@ -190,8 +190,22 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
     width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.exit {
+    position: absolute;
+    left: 20px;
+    background-color: white;
+    color: black;
+    padding: 20px 80px;
+    font-size: 18px;
+    border-radius: 40px;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
 }
 
 .username {
@@ -210,18 +224,35 @@ header {
 .center-button {
     background-color: #9e83f5;
     color: white;
-    padding: 20px 40px;
+    padding: 20px 20px;
     font-size: 16px;
     border: none;
     border-radius: 10px;
     text-decoration: none;
-    display: inline-block;
     text-align: center;
     transition: background-color 0.3s;
+    margin-top: 75px;
+    margin-bottom: 75px;
 }
 
 .center-button:hover {
     background-color: #805be2;
+}
+
+.bubble-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 12px;
+    width: calc(25% - 15px);
+    box-sizing: border-box;
+    transition: background-color 0.3s;
+    min-width: 50px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .bubble-container {
@@ -309,6 +340,13 @@ header {
 }
 
 @media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .center-button {
+        margin-top: 10px;
+    }
     .bubble {
         width: calc(50% - 15px);
     }
