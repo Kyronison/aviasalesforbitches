@@ -85,9 +85,9 @@ class AviasalesAPI:
                 )
 
                 # Создаём и сохраняем билет
-                ticket = crud.create_ticket(db=self.db, ticket=ticket_create)
-                added_tickets.append(ticket)
-                logger.info(f"Добавлен новый билет: {ticket.from_city} → {ticket.to_city} за {ticket.price} руб.")
+                #ticket = crud.create_ticket(db=self.db, ticket=ticket_create)
+                added_tickets.append(ticket_create)
+                #logger.info(f"Добавлен новый билет: {ticket.from_city} → {ticket.to_city} за {ticket.price} руб.")
 
             return added_tickets
 
