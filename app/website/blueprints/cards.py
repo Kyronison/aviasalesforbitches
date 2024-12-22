@@ -16,6 +16,7 @@ def add_card():  # получаем все, все, все данные :)
         start_city = str(request.form['scity'])
         finish_city = str(request.form['fcity'])
         time = request.form['date']
+        money = None
         error = None
 
         if not request.form['sum']:
