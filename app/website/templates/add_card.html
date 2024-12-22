@@ -43,7 +43,7 @@
                     <input type="date" id="date" name="date"/>
                 </div>
                 <div class="input-group">
-                    <input name="sum" id="sum" type="number" placeholder="Сумма билета или пустое поле, если берем среднее" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                    <input name="sum" id="sum" type="number" placeholder="Сумма билета" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                 </div>
                 <div class="actions">
                     <a href="{{ url_for('main.index') }}">Главная</a>

@@ -16,12 +16,15 @@ def add_card():  # получаем все, все, все данные :)
         start_city = str(request.form['scity'])
         finish_city = str(request.form['fcity'])
         time = request.form['date']
-        if str(request.form['sum']) == "":
-            money = None
-        else:
-            money = int(request.form['sum'])
-
         error = None
+
+        if not request.form['sum']:
+            error = 'Поле с ценой не может быть пустым.'
+        else:
+            try:
+                money = int(request.form['sum'])
+            except ValueError:
+                error = 'Цена должна быть числом.'
 
         if not start_city:
             error = 'Город отправления должен быть обязательным.'
