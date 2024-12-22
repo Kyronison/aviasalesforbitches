@@ -21,9 +21,6 @@ def start(update: Update, context: CallbackContext):
 # Регистрируем обработчик команды /start
 dispatcher.add_handler(CommandHandler("start", start))
 
-def main():
+def run_bot():
     updater.start_polling()
     updater.idle()
-
-if __name__ == "__main__":
-    main()

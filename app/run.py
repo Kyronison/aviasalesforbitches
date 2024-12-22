@@ -8,6 +8,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from app.services.ticket_service import collect_tickets  # Импорт фоновой задачи
 from app.services.tickets_monitoring import run_ticket_monitoring
 from app.website.application import create_app as create_website_app
+from app.telegram_bot.bot import run_bot
 
 # Настройка логирования
 logging.basicConfig(level=logging.INFO)
@@ -29,25 +30,22 @@ flask_app = create_website_app()
 def run_flask():
     flask_app.run(debug=False, port=5000, use_reloader=False)  # Отключаем перезагрузчик
 
+
 def run_all():
     try:
-        # Запуск Telegram-бота
-        # bot_thread = Thread(target=run_bot)
-        # bot_thread.start()
-        # logger.info("Telegram-бот запущен")
 
-        # Запуск Flask-приложения
         flask_thread = Thread(target=run_flask, daemon=True)
         flask_thread.start()
         logger.info("Flask-приложение запущено")
 
-        # Планировщик работает в фоновом режиме
-        logger.info("Все сервисы запущены. Нажмите Ctrl+C для завершения.")
-        flask_thread.join()  # Поддерживаем основной поток активным
+        # Telegram-бот запускается в главном потоке
+        logger.info("Запуск Telegram-бота в основном потоке")
+        run_bot()
     except (KeyboardInterrupt, SystemExit):
         logger.info("Завершение работы всех сервисов")
     finally:
         scheduler.shutdown()
+
 
 if __name__ == "__main__":
     logger.info("Запуск всех сервисов")
