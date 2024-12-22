@@ -19,8 +19,8 @@ Base.metadata.create_all(bind=engine)
 
 # Настройка планировщика
 scheduler = BackgroundScheduler()
-scheduler.add_job(collect_tickets, 'interval', minutes=20)
-scheduler.add_job(run_ticket_monitoring, 'interval', minutes=20)
+#scheduler.add_job(collect_tickets, 'interval', minutes=2)
+scheduler.add_job(run_ticket_monitoring, 'interval', minutes=2)
 scheduler.start()
 
 # Настройка Flask-приложения
