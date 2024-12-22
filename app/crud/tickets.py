@@ -1,7 +1,9 @@
+# tickets.py
 from sqlalchemy.orm import Session
 from app import models, schemas
 from datetime import datetime
 from typing import Optional
+from datetime import date
 from app.models import Ticket
 
 
@@ -57,3 +59,11 @@ def get_tickets_filtered(
 
 def get_tickets(db: Session, skip: int = 0, limit: int = 10):
     return db.query(models.Ticket).offset(skip).limit(limit).all()
+
+
+def get_ticket_by_flight(db: Session, from_city: str, to_city: str, flight_date: date):
+    return db.query(models.Ticket).filter(
+        models.Ticket.from_city == from_city,
+        models.Ticket.to_city == to_city,
+        models.Ticket.flight_date == flight_date
+    ).order_by(models.Ticket.price).first()

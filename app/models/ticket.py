@@ -1,7 +1,5 @@
 from sqlalchemy import Column, Integer, String, Numeric, Date, Text
-from sqlalchemy.ext.declarative import declarative_base
-
-Base = declarative_base()
+from .base import Base  # Импортируем общий Base
 
 class Ticket(Base):
     __tablename__ = 'tickets'
