@@ -3,7 +3,7 @@ from threading import Thread
 from fastapi import FastAPI
 from app.routers import tickets
 from app.config.database import engine
-from app.models.base import Base
+from app.models.card import Base
 from apscheduler.schedulers.background import BackgroundScheduler
 from app.services.ticket_service import collect_tickets  # Импорт фоновой задачи
 from app.services.tickets_monitoring import run_ticket_monitoring
@@ -14,13 +14,13 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Удаление и создание таблиц (один раз при старте)
-#Base.metadata.drop_all(bind=engine)
+# Base.metadata.drop_all(bind=engine)
 Base.metadata.create_all(bind=engine)
 
 # Настройка планировщика
 scheduler = BackgroundScheduler()
-#scheduler.add_job(collect_tickets, 'interval', minutes=2)
-scheduler.add_job(run_ticket_monitoring, 'interval', minutes=2)
+scheduler.add_job(collect_tickets, 'interval', minutes=20)
+scheduler.add_job(run_ticket_monitoring, 'interval', minutes=20)
 scheduler.start()
 
 # Настройка Flask-приложения

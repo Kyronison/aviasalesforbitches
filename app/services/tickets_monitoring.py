@@ -18,7 +18,7 @@ class TicketMonitor:
         self.db = db
         self.api = AviasalesAPI(db=self.db)
 
-    async def check_and_notify(self):
+    def check_and_notify(self):
         logger.info("Запуск мониторинга билетов")
         cards = self.db.query(Card).all()
 
@@ -64,7 +64,7 @@ class TicketMonitor:
                             f"Ссылка: https://www.aviasales.ru{cheapest_ticket.link}"
                         )
                         # Отправляем сообщение пользователю
-                        await send_telegram_message(card.user.chat_id, message)
+                        send_telegram_message(card.user.chat_id, message)
                         logger.info(f"Билет отправлен пользователю {card.user.chat_id}")
 
                         # Создаем запись билета в базе данных
