@@ -1,7 +1,7 @@
 # app/services/aviasales_api.py
 import requests
 from typing import Dict, Any, Optional, List
-from app.config.config import AVIASALES_API_KEY
+from app.config.secrets import Secrets
 from sqlalchemy.orm import Session
 from .. import crud, schemas
 from dateutil.parser import parse
@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 class AviasalesAPI:
     def __init__(self, db: Session):
-        self.api_key = AVIASALES_API_KEY
+        self.api_key = Secrets.get_secret('AVIASALES_API_KEY')
         self.base_url = "https://api.travelpayouts.com/aviasales/v3/"
         self.db = db
 
