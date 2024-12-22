@@ -6,13 +6,15 @@ from sqlalchemy.orm import Session
 from .. import crud, schemas
 from dateutil.parser import parse
 import logging
+from app.config.api_urls import AVIASALES_API_URL
+
 
 logger = logging.getLogger(__name__)
 
 class AviasalesAPI:
     def __init__(self, db: Session):
         self.api_key = Secrets.get_secret('AVIASALES_API_KEY')
-        self.base_url = "https://api.travelpayouts.com/aviasales/v3/"
+        self.base_url = AVIASALES_API_URL
         self.db = db
 
     def get_prices_for_dates(

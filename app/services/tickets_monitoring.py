@@ -9,6 +9,7 @@ from app.models import Card
 from app.schemas import TicketCreate
 from app.config.database import SessionLocal
 from app.crud.tickets import get_ticket_by_flight, create_ticket
+from app.config.api_urls import AVIASALES_BASE_URL
 
 logger = logging.getLogger(__name__)
 
@@ -61,7 +62,7 @@ class TicketMonitor:
                             f"Маршрут: {cheapest_ticket.from_city} -> {cheapest_ticket.to_city}\n"
                             f"Цена: {cheapest_ticket.price} руб.\n"
                             f"Дата вылета: {cheapest_ticket.flight_date}\n"
-                            f"Ссылка: https://www.aviasales.ru{cheapest_ticket.link}"
+                            f"Ссылка: {AVIASALES_BASE_URL}{cheapest_ticket.link}"
                         )
                         # Отправляем сообщение пользователю
                         send_telegram_message(card.user.chat_id, message)
