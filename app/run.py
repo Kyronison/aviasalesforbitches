@@ -1,7 +1,6 @@
 import logging
 from threading import Thread
-from fastapi import FastAPI
-from app.routers import tickets
+from pytz import timezone
 from app.config.database import engine
 from app.models.card import Base
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -18,10 +17,12 @@ logger = logging.getLogger(__name__)
 # Base.metadata.drop_all(bind=engine)
 Base.metadata.create_all(bind=engine)
 
+moscow_timezone = timezone('Europe/Moscow')
+
 # Настройка планировщика
 scheduler = BackgroundScheduler()
 #scheduler.add_job(collect_tickets, 'interval', minutes=2)
-scheduler.add_job(run_ticket_monitoring, 'interval', minutes=2)
+scheduler.add_job(run_ticket_monitoring, 'interval', minutes=2, timezone=moscow_timezone)
 scheduler.start()
 
 # Настройка Flask-приложения
