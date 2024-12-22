@@ -12,6 +12,7 @@ from app.crud.tickets import get_ticket_by_flight, create_ticket
 
 logger = logging.getLogger(__name__)
 
+
 class TicketMonitor:
     def __init__(self, db: Session):
         self.db = db
@@ -57,10 +58,10 @@ class TicketMonitor:
                         # Формируем сообщение для пользователя
                         message = (
                             f"🔥 Найден дешевый билет!\n"
-                            f"Маршрут: {cheapest_ticket.from_city} &rarr; {cheapest_ticket.to_city}\n"
+                            f"Маршрут: {cheapest_ticket.from_city} -> {cheapest_ticket.to_city}\n"
                             f"Цена: {cheapest_ticket.price} руб.\n"
                             f"Дата вылета: {cheapest_ticket.flight_date}\n"
-                            f"Ссылка: {cheapest_ticket.link}"
+                            f"Ссылка: https://www.aviasales.ru{cheapest_ticket.link}"
                         )
                         # Отправляем сообщение пользователю
                         await send_telegram_message(card.user.chat_id, message)
@@ -89,6 +90,8 @@ class TicketMonitor:
                 logger.error(f"Ошибка для карточки {card.card_id}: {e}")
 
         logger.info("Мониторинг билетов завершён")
+
+
 def run_ticket_monitoring():
     db = SessionLocal()
     try:
