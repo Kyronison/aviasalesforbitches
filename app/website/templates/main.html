@@ -34,8 +34,11 @@
                     </form>
                 </div>
         {% endfor %}
-        <div class="bubble-button">
-            <a href="{{ url_for('cards.add_card') }}" class="center-button">Добавить билет</a>
+        <div class="bubble">
+            <div class="center-text">Хотите добавить билет для отслеживания?</div>
+            <form action="{{ url_for('cards.add_card') }}">
+                <button type="submit" class="center-button">Добавить билет</button>
+            </form>
         </div>
     </div>
 </div>
