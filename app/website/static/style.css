@@ -303,6 +303,7 @@ header {
     cursor: pointer;
     transition: background-color 0.3s;
     width: 100%;
+    cursor: pointer;
 }
 
 .bubble .center-button {
@@ -316,6 +317,7 @@ header {
     transition: background-color 0.3s;
     width: 100%;
     margin-top: 80px;
+    cursor: pointer;
 }
 
 .bubble .center-button:hover {

@@ -41,8 +41,15 @@ def login():
             session['login'] = username
             return redirect(url_for('main.logged'))
         except ValueError as e:
-            print(f"Ошибка аутентификации: {str(e)}")
-            flash(f"Ошибка аутентификации: {str(e)}", 'error')
+            error_message = str(e)
+            start = error_message.find("Логин")
+            end = error_message.find("[type=", start)
+            extracted_message = error_message[start:end].strip()
+            print(f"Ошибка аутентификации: {extracted_message}")
+            if "Логин" in str(e):
+                flash(f"Логин может содержать только английские буквы и цифры", 'error')
+            else:
+                flash(f"Пароль может содержать только английские буквы и цифры", 'error')
     return render_template('login.html', form=form)
 
 
@@ -69,8 +76,10 @@ def signup():
             return redirect(url_for('main.telegram'))
         except ValueError as e:
             print(f"Ошибка регистрации: {str(e)}")
-
-            flash(f"Ошибка регистрации: {str(e)}", 'error')
+            if "Логин" in str(e):
+                flash(f"Логин может содержать только английские буквы и цифры", 'error')
+            else:
+                flash(f"Пароль может содержать только английские буквы и цифры", 'error')
     return render_template('register.html', form=form)
 
 
