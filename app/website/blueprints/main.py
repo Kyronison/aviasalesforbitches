@@ -31,5 +31,3 @@ def index():
         return render_template('main.html', username=session['login'], cards=cards)
     else:
         return redirect(url_for('auth.login'))
-
-
