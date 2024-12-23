@@ -41,11 +41,7 @@ def login():
             session['login'] = username
             return redirect(url_for('main.logged'))
         except ValueError as e:
-            error_message = str(e)
-            start = error_message.find("Логин")
-            end = error_message.find("[type=", start)
-            extracted_message = error_message[start:end].strip()
-            print(f"Ошибка аутентификации: {extracted_message}")
+            print(f"Ошибка аутентификации: {str(e)}")
             if "Логин" in str(e):
                 flash(f"Логин может содержать только английские буквы и цифры", 'error')
             else:
