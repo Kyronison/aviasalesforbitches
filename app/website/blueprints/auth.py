@@ -56,8 +56,6 @@ def signup():
         username = form.login.data
         password = form.password.data
         password_confirm = form.password_confirm.data
-        print(password)
-        print(password_confirm)
 
         if password != password_confirm:
             flash("Пароли не совпадают. Попробуйте еще раз.", 'error')
